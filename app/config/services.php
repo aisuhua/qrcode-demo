@@ -7,6 +7,8 @@ use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Flash\Direct as Flash;
+use Phalcon\Cache\Backend\File as BackFile;
+use Phalcon\Cache\Frontend\Data as FrontData;
 
 /**
  * Shared configuration service
@@ -109,4 +111,16 @@ $di->setShared('session', function () {
     $session->start();
 
     return $session;
+});
+
+$di->setShared('dataCache', function () {
+    $frontCache = new FrontData([
+        'lifetime' => 3600,
+    ]);
+
+    $cache = new BackFile($frontCache, [
+        'cacheDir' => BASE_PATH . '/cache/data/',
+    ]);
+
+    return $cache;
 });
