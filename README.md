@@ -115,7 +115,7 @@ uuid 有以下状态：
 - PHP 7
 - [Phalcon 3.4](https://phalconphp.com)
 
-能让项目跑起来就好，可不必太过于受制于 Phalcon 框架本身，它只是个普通的 PHP extension.
+能让项目跑起来就好，可不必太过受制于 Phalcon 框架本身，它只是个普通的 PHP extension.
 
 克隆本项目
 
