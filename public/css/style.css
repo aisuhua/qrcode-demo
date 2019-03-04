@@ -19,6 +19,8 @@
 
 .bottom-status .status-default, .bottom-status .status-scanned {
     display: inline-block;
+    height: 30px;
+    line-height: 30px;
 }
 
 .bottom-status .status-default {
@@ -29,7 +31,6 @@
 .bottom-status .status-scanned {
     color: #fff;
     background: #62b84b;
-    vertical-align: top;
     padding: 0 15px;
     border-radius: 15px;
 }
@@ -44,7 +45,7 @@
     text-decoration: none;
     text-align: center;
     line-height: 24px;
-    padding: 148px 0;
+    padding: 151px 0;
     background-color: rgba(48, 184, 70, 0.9);
     background-repeat: no-repeat;
     background-position: center center;
