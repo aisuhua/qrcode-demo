@@ -1,9 +1,7 @@
 
 <div id="qrcode-box">
 
-    <div id="qrcode-image">
-<!--        <img src="img/face.png" style="width: 270px;height:270px;" />-->
-    </div>
+    <div id="qrcode-image"></div>
 
     <div class="bottom-status">
         <span class="status-default">使用傻瓜 App 扫描二维码登录</span>
@@ -32,7 +30,6 @@
     <div id="info-check"><p></p></div>
 </div>
 
-
 <script>
     $(function() {
 
@@ -50,7 +47,7 @@
                     text: data1.qrcode
                 });
 
-                $('#info-qrcode').html('Response: ' + JSON.stringify(data1));
+                $('#info-qrcode').html('QR code info: ' + JSON.stringify(data1));
                 $('#info-check').html('');
 
                 // Check the qrcode status
@@ -60,7 +57,7 @@
                         var data2 = response2.data;
 
                         // Check info
-                        $('#info-check').html('Loop: ' + ++i + ' --- ' + JSON.stringify(data2));
+                        $('#info-check').html('Check loop: ' + ++i + ' --- ' + JSON.stringify(data2));
 
                         if (data2.state == 0) { // 正常状态
 
@@ -90,7 +87,7 @@
                             clearInterval(checkInterval);
                         }
                     });
-                }, 1000);
+                }, 2000);
             });
         }
 

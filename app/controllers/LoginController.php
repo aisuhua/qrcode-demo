@@ -8,7 +8,7 @@ class LoginController extends ControllerBase
     public function indexAction()
     {
         if (!empty($_SESSION['user_id'])) {
-            return $this->response->redirect('index', true);
+            return $this->response->redirect('', true);
         }
     }
 

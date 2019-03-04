@@ -8,7 +8,7 @@ defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 
 return new \Phalcon\Config([
     'site' => [
-        'host' => 'http://qrcode.demo.com'
+        'host' => 'http://qrcode.example.com'
     ],
 
     'database' => [
