@@ -122,7 +122,7 @@ uuid 有以下状态：
 ```sh
 cd /path/to
 git clone git@github.com:aisuhua/qrcode-demo.git
-``
+```
 
 ### Nginx 配置
 
