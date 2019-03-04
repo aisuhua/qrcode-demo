@@ -23,6 +23,8 @@
 
 ### 获取 uuid
 
+只用于 Web 端，初始打开登录页面或刷新登录页面都会调用。
+
 ```
 /qrcode/get
 ```
@@ -39,6 +41,8 @@
 `qrcode` 就是二维码的内容，APP 扫描以后直接请求该地址即可，这有利于发版后接口的迭代。
 
 ### 检测 uuid 状态
+
+只用于 Web 端，该接口会在不停轮询调用。
 
 ```
 /qrcode/check?uuid={:uuid}
@@ -61,6 +65,8 @@ uuid 有以下状态：
 
 ### 扫描二维码
 
+APP 扫描二维码后会调用该接口，接口地址实际上就是二维码的内容。
+
 ```
 /qrcode/scan?uuid={:uuid}
 ```
@@ -78,17 +84,23 @@ uuid 有以下状态：
 
 ### 确认登录
 
+用户在 APP 端确认登录后，APP 会调用该接口。
+
 ```
 /qrcode/confirm?uuid={:uuid}
 ```
 
 ### 取消登录
 
+当用户取消本次操作时会调用该接口。
+
 ```
 /qrcode/cancel?uuid={:uuid}
 ```
 
 ### uuid 登录
+
+网页端获知 uuid 状态已经变成已确认后，则会调用该接口，完成登录操作。
 
 ```
 /login/qrcode=?ticket={:ticket}&uuid={:uuid}&time={:timestamp}
