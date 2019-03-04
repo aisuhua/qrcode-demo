@@ -34,7 +34,7 @@
 ```json
 {
     "uuid":"5c7ce144dbc4a0.53849626",
-    "qrcode":"http://qrcode.demo.com/qrcode/scan?uuid=5c7ce144dbc4a0.53849626"
+    "qrcode":"http://qrcode.example.com/qrcode/scan?uuid=5c7ce144dbc4a0.53849626"
 }
 ```
 
