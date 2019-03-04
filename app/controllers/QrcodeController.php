@@ -33,7 +33,7 @@ class QrcodeController extends ControllerBase
         $result = [];
         $data = $this->dataCache->get($uuid);
 
-        $data = [];
+        $data['state'] = Qrcode::STATE_CANCELED;
 
         if (empty($data)) {
             $result['state'] = Qrcode::STATE_EXPIRED;
@@ -49,7 +49,7 @@ class QrcodeController extends ControllerBase
             $result['tip'] = '二维码已被扫描，等待用户在手机点击确认';
         } elseif ($data['state'] == Qrcode::STATE_CONFIRMED) {
             $result['state'] = Qrcode::STATE_CONFIRMED;
-            $result['tip'] = '登录成功';
+            $result['tip'] = '已经登录';
         }
 
         return $this->successResponse($result);

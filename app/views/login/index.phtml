@@ -1,19 +1,18 @@
 
-<div id="login-box">
-    <div id="qrcode">
-        <div id="qrcode-image"></div>
-        <a id="qrcode-refresh" href="javascript:void(0);" style="display: none;">
-            <span>二维码失效</span>
-            <span>请点击刷新</span>
-        </a>
-    </div>
+<div id="qrcode-box">
+
+    <div id="qrcode-image"></div>
 
     <div class="bottom-status">
-        <span class="status-default">使用115组织 App扫描二维码登录</span>
-        <span  class="status-scanned" style="display: none;">扫描成功 请在手机点击确认</span>
+        <span class="status-default">使用傻瓜 App 扫描二维码登录</span>
+        <span  class="status-scanned"  style="display: none;">扫描成功 请在手机点击确认</span>
     </div>
-</div>
 
+    <a id="qrcode-refresh" href="javascript:void(0);" style="display: none;">
+        <span>二维码失效</span>
+        <span>请点击刷新</span>
+    </a>
+</div>
 
 <div id="info">
     <br>
@@ -21,43 +20,60 @@
     <div id="info-check"></div>
 </div>
 
-
-
 <script>
     $(function() {
 
-        $.get('/qrcode/get', function(response1) {
-            var data1 = response1.data;
+        function fresh_qrcode() {
+            $.get('/qrcode/get', function(response1) {
+                var data1 = response1.data;
 
-            // Render qrcode
-            $('#qrcode-image').qrcode({
-                width: 270,
-                height: 270,
-                text: data1.qrcode
-            });
-
-            $('#info-qrcode').html(JSON.stringify(data1));
-
-            // Check the qrcode status
-            var i = 0;
-            var checkInterval = setInterval(function() {
-                $.get('/qrcode/check', {'uuid': data1.uuid}, function(response2) {
-                    var data2 = response2.data;
-
-                    if (data2.state == 0) {
-                        // 正常状态
-                    } else if (data2.state == 1) {
-
-                    } else if (data2.state == -1 || data2.state == -2) {
-                        $('#qrcode-refresh').show();
-                        clearInterval(checkInterval);
-                    }
+                // Render qrcode
+                $('#qrcode-image').qrcode({
+                    width: 270,
+                    height: 270,
+                    text: data1.qrcode
                 });
-            }, 5000);
 
+                $('#info-qrcode').html(JSON.stringify(data1));
+                $('#info-check').html('');
+
+                // Check the qrcode status
+                var i = 0;
+                var checkInterval = setInterval(function() {
+                    $.get('/qrcode/check', {'uuid': data1.uuid}, function(response2) {
+                        var data2 = response2.data;
+
+                        // Check info
+                        $('#info-check').html(++i + ' --- ' + JSON.stringify(data2));
+
+                        if (data2.state == 0) { // 正常状态
+
+                        } else if (data2.state == 1) { // 已扫描
+                            $('.bottom-status .status-default').hide();
+                            $('.bottom-status .status-scanned').show();
+                        } else if (data2.state == 2) { // 已确认登录
+                            clearInterval(checkInterval);
+
+                        } else if (data2.state == -1 || data2.state == -2) {
+                            $('#qrcode-refresh').show();
+                            $('.bottom-status .status-default').show();
+                            $('.bottom-status .status-scanned').hide();
+                            clearInterval(checkInterval);
+                        }
+                    });
+                }, 5000);
+
+            });
+        }
+
+        // Init qrcode
+        fresh_qrcode();
+
+        $('#qrcode-refresh').click(function() {
+            $('#qrcode-image').html('');
+            $('#qrcode-refresh').hide();
+            fresh_qrcode();
         });
-
-
     });
 
 </script>
