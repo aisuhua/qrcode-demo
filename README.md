@@ -188,25 +188,11 @@ server {
 
 - 轮询的调用方式不止有延迟，也会增加了大量的无效请求，有待改进。
 
+## 后记
+
+如需了解微信扫码登录的实现细节，可[点击这里](https://github.com/aisuhua/wiki/tree/master/http/ref/qrcode/wx)。
+
 ## 参考文献
 
 - [扫码登录是如何实现的？](https://www.jianshu.com/p/7f072ac61763)
 - [扫码登录原理](https://zhuanlan.zhihu.com/p/22032787)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
