@@ -1,5 +1,7 @@
 # QR Code Demo
 
+[Live Demo](http://122.51.144.50:82)
+
 该项目的主要目是为了学习扫码登录的主要流程。
 
 提示：该项目没有客户端，应此需要通过调用接口模拟客户端的操作。
@@ -122,6 +124,12 @@ uuid 有以下状态：
 ```sh
 cd /path/to
 git clone git@github.com:aisuhua/qrcode-demo.git
+```
+
+### 修改可写权限
+
+```sh
+chmod u+w app/cache/data
 ```
 
 ### Nginx 配置

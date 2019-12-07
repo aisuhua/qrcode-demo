@@ -119,7 +119,7 @@ $di->setShared('dataCache', function () {
     ]);
 
     $cache = new BackFile($frontCache, [
-        'cacheDir' => BASE_PATH . '/cache/data/',
+        'cacheDir' => APP_PATH . '/cache/data/',
     ]);
 
     return $cache;
